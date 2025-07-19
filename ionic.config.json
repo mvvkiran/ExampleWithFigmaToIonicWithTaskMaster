@@ -1,0 +1,7 @@
+{
+  "name": "ExampleWithFigmaToIonicWithTaskMaster",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
