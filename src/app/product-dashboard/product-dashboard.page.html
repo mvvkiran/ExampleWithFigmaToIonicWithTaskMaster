@@ -1,0 +1,243 @@
+<ion-content [fullscreen]="true" class="dashboard-content">
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <!-- User Profile Section -->
+      <div class="user-profile-section">
+        <div class="user-profile">
+          <img src="/assets/user-avatar.jpg" alt="User Avatar" class="user-avatar">
+          <div class="user-info">
+            <h3>Wildan</h3>
+            <p>Creative Director</p>
+          </div>
+        </div>
+        
+        <!-- Search Bar -->
+        <div class="search-section">
+          <ion-searchbar placeholder="Search" class="custom-searchbar"></ion-searchbar>
+        </div>
+      </div>
+      
+      <!-- Navigation -->
+      <nav class="main-navigation">
+        <ion-button fill="solid" expand="block" class="nav-button active">
+          <ion-icon name="grid-outline" slot="start"></ion-icon>
+          Dashboard
+        </ion-button>
+        <ion-button fill="clear" expand="block" class="nav-button">
+          <ion-icon name="analytics-outline" slot="start"></ion-icon>
+          Analytics
+        </ion-button>
+        
+        <div class="nav-section">
+          <h4 class="section-title">ACCOUNT</h4>
+          <ion-button fill="clear" expand="block" class="nav-button">
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+            Account
+          </ion-button>
+          <ion-button fill="clear" expand="block" class="nav-button">
+            <ion-icon name="document-outline" slot="start"></ion-icon>
+            My Publishing
+          </ion-button>
+          <ion-button fill="clear" expand="block" class="nav-button">
+            <ion-icon name="cube-outline" slot="start"></ion-icon>
+            Products
+          </ion-button>
+          <ion-button fill="clear" expand="block" class="nav-button">
+            <ion-icon name="receipt-outline" slot="start"></ion-icon>
+            Orders
+          </ion-button>
+          <ion-button fill="clear" expand="block" class="nav-button">
+            <ion-icon name="ellipsis-horizontal" slot="start"></ion-icon>
+            More
+          </ion-button>
+        </div>
+        
+        <div class="nav-section">
+          <h4 class="section-title">OTHER MENU</h4>
+          <ion-button fill="clear" expand="block" class="nav-button">
+            <ion-icon name="settings-outline" slot="start"></ion-icon>
+            Setting
+          </ion-button>
+          <ion-button fill="clear" expand="block" class="nav-button">
+            <ion-icon name="help-circle-outline" slot="start"></ion-icon>
+            Help
+          </ion-button>
+          <ion-button fill="clear" expand="block" class="nav-button">
+            <ion-icon name="card-outline" slot="start"></ion-icon>
+            Subscriptions
+          </ion-button>
+        </div>
+      </nav>
+    </aside>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Dashboard Header -->
+      <header class="dashboard-header">
+        <h1>Dashboard</h1>
+        <p>All general information appears in this field</p>
+      </header>
+      
+      <!-- Dashboard Stats -->
+      <div class="dashboard-stats">
+        <!-- Report Section -->
+        <ion-card class="report-card">
+          <ion-card-content class="report-content">
+            <div class="chart-placeholder">
+              <div class="chart-circle"></div>
+            </div>
+            <div class="report-info">
+              <h2>December Report</h2>
+              <p>Retrieve December report, analyze key data for informed strategic decisions.</p>
+              <div class="report-actions">
+                <ion-button color="primary" (click)="onAnalyzeReport()">Analyze This</ion-button>
+                <ion-button fill="outline" color="medium" (click)="onDownloadReport()">Download</ion-button>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+        
+        <!-- Stat Cards -->
+        <div class="stat-cards-container">
+          <ion-card class="stat-card">
+            <ion-card-content>
+              <h3>December income</h3>
+              <div class="stat-value">${{ monthlyIncome.toLocaleString() }}</div>
+              <div class="stat-tags">
+                <ion-chip color="light"># Macbook m2</ion-chip>
+                <ion-chip color="light"># iPhone 15</ion-chip>
+              </div>
+              <div class="stat-chart">
+                <div class="chart-bar"></div>
+                <ion-badge color="success" class="stat-change">↑ 18,24%</ion-badge>
+              </div>
+            </ion-card-content>
+          </ion-card>
+          
+          <ion-card class="stat-card">
+            <ion-card-content>
+              <h3>December sales</h3>
+              <div class="stat-value">{{ (monthlySales/1000).toFixed(1) }}k</div>
+              <div class="stat-details">
+                <span>1,272 iPhone 15</span>
+                <span>675 Macbook</span>
+              </div>
+              <div class="stat-chart">
+                <div class="chart-bar"></div>
+                <ion-badge color="danger" class="stat-change">↓ 9,18%</ion-badge>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </div>
+      
+      <!-- Products Section -->
+      <ion-card class="products-section">
+        <!-- Products Header -->
+        <div class="products-header">
+          <ion-segment value="published" class="products-tabs">
+            <ion-segment-button value="published">
+              <ion-label>Published</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="draft">
+              <ion-label>Draft</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+          <ion-button color="primary" (click)="onExportData()">Export Now</ion-button>
+        </div>
+        
+        <!-- Products Table -->
+        <div class="products-table-container">
+          <div class="table-scroll-wrapper">
+            <table class="products-table">
+              <thead>
+                <tr>
+                  <th class="checkbox-column">
+                    <ion-checkbox></ion-checkbox>
+                  </th>
+                  <th class="product-name-column">PRODUCT NAME</th>
+                  <th class="stock-column">FIRST STOCK</th>
+                  <th class="sold-column">SOLD</th>
+                  <th class="date-column">DATE ADDED</th>
+                  <th class="pricing-column">PRICING</th>
+                  <th class="rating-column">RATING</th>
+                  <th class="action-column">ACTION</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of productList" class="product-row">
+                  <td class="checkbox-column">
+                    <ion-checkbox 
+                      [checked]="product.isSelected"
+                      (ionChange)="onToggleProductSelection(product)">
+                    </ion-checkbox>
+                  </td>
+                  <td class="product-name-column">
+                    <span class="product-name">{{ product.name }}</span>
+                  </td>
+                  <td class="stock-column">
+                    <div class="stock-content">
+                      <ion-icon name="cube-outline" class="stock-icon"></ion-icon>
+                      <span class="stock-value">{{ product.initialStock.toLocaleString() }}</span>
+                      <ion-icon name="arrow-forward" class="stock-arrow"></ion-icon>
+                    </div>
+                  </td>
+                  <td class="sold-column">
+                    <div class="sold-content">
+                      <ion-icon name="target-outline" class="sold-icon"></ion-icon>
+                      <span class="sold-value">{{ product.soldQuantity.toLocaleString() }}</span>
+                    </div>
+                  </td>
+                  <td class="date-column">
+                    <span class="date-value">{{ product.dateAdded }}</span>
+                  </td>
+                  <td class="pricing-column">
+                    <span class="pricing-value">${{ product.price.toLocaleString() }}</span>
+                  </td>
+                  <td class="rating-column">
+                    <div class="rating-content">
+                      <ion-icon name="star" color="warning" class="rating-star"></ion-icon>
+                      <span class="rating-value">{{ product.rating }}</span>
+                    </div>
+                  </td>
+                  <td class="action-column">
+                    <div class="action-buttons">
+                      <ion-button fill="clear" size="small" (click)="onEditProduct(product)">
+                        <ion-icon name="create-outline"></ion-icon>
+                      </ion-button>
+                      <ion-button fill="clear" size="small" color="danger" (click)="onDeleteProduct(product)">
+                        <ion-icon name="trash-outline"></ion-icon>
+                      </ion-button>
+                      <ion-button fill="clear" size="small">
+                        <ion-icon name="ellipsis-horizontal"></ion-icon>
+                      </ion-button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <!-- Pagination -->
+          <div class="pagination-container">
+            <div class="pagination-controls">
+              <ion-button fill="outline" size="small">Prev</ion-button>
+              <div class="pagination-numbers">
+                <ion-button fill="solid" size="small" color="primary">1</ion-button>
+                <ion-button fill="clear" size="small">2</ion-button>
+                <span class="pagination-dots">...</span>
+                <ion-button fill="clear" size="small">8</ion-button>
+                <ion-button fill="clear" size="small">9</ion-button>
+              </div>
+              <ion-button fill="outline" size="small">Next</ion-button>
+            </div>
+            <div class="pagination-info">
+              <span>Showing 7 of 120 entries</span>
+            </div>
+          </div>
+        </div>
+      </ion-card>
+    </main>
+  </div>
+</ion-content>

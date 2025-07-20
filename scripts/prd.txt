@@ -1,0 +1,19 @@
+I would like to create concise functional requirements for the following application:
+
+I want to build a hybrid mobile application which will be responsive to all mobile devices. I have an angular code located in /Users/mvvkiran/Workspace/Angular/ExampleWithFigma.
+I have created an ionic app which has all the folders in the path /Users/mvvkiran/Workspace/Angular/ExampleWithFigmaToIonicWithTaskMaster.
+Now my requirement is to take Angular codebase and take all the files, including CSS, html, typescript, related to product dashboard and migrate them to ionic codebase using clean code and better namig conventions
+
+My requirements:
+
+**REQ-001: Responsive**
+- The final output should be compatible with all mobile devices
+- The layout and look and feel should be exactly the same in all mobile devices
+- the app should work on desktop i.e., a web browser and also should work on mobile browser and also mobile app
+
+**REQ-002: Table properties**
+- The dashboard has a Table
+- The table has several columns
+- The table headers <th> should be displayed in the same line and should not be shown in 2 lines
+- Ensure table data <td> should be displayed in the same line and should not be shown in 2 lines
+- Ensure that table data <td> is not overlapped with other column
